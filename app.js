@@ -14,7 +14,8 @@ jsonData.generateData().then(data => {
 const redis = require('./redis/redis-connection');
 const requestHandler = require('./request-handler');
 
-app.get('/:name', requestHandler.getNamee);
+app.get('/v1/:name', requestHandler.getNamee);
+app.all('/*', requestHandler.defaultRoutr);
 
 app.listen(port, () => {
   console.log(`Server Start at port ${port}`);

@@ -5,7 +5,11 @@ const retry_options = function (options) {
     if (options.error && options.error.code === 'ECONNREFUSED') {
         // End reconnecting on a specific error and flush all commands with
         // a individual error
-        return new Error('The server refused the connection');
+        if(options.attempt > 20){
+            return new Error('The server refused the connection');
+        }
+        return 1000;
+        
     }
     if (options.total_retry_time > 1000 * 60 * 60) {
         // End reconnecting after a specific timeout and flush all commands

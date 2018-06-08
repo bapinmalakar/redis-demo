@@ -4,8 +4,11 @@ class Helper {
     constructor() { }
 
     filterByName(name) {
-        regex = new RegExp(name, 'i');
-        let data = fakeJsonData.filter(d => d.first_name.match(regex));
+        let regex = new RegExp(name, 'i');
+        console.log('Fake json: ', fakeJsonData.length);
+        let data = fakeJsonData.filter(d => {
+            if (d.first_name.match(regex)) return d;
+        });
         return data;
     }
 }
