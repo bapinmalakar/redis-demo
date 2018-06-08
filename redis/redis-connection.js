@@ -6,7 +6,7 @@ const retry_options = function (options) {
         // End reconnecting on a specific error and flush all commands with
         // a individual error
         if(options.attempt > 20){
-            return new Error('The server refused the connection');
+            return new Error({code: 'redis-disconnect', msg: 'try after some time!'});
         }
         return 1000;
         
